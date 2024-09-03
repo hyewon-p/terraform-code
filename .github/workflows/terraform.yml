@@ -2,6 +2,11 @@ name: 'Terraform Plan/Apply'
 
 on:
   workflow_dispatch:
+    inputs:
+      name:
+        description: "Docker TAG"
+        required: true
+        default: "main-20240827002516"
 
 #Special permissions required for OIDC authentication
 permissions:
@@ -19,13 +24,13 @@ env:
   TF_azure_registry_name: "azureregistry0827"
   TF_github_repo_name: "terraform-cicd"
   TF_github_org: "hyewon-p"
-  TF_github_token: "${{ secrets.GITHUB_TOKEN }}"
+  TF_github_token: "${{ secrets.LOGIN_TOKEN }}"
   TF_github_template_owner: "hyewon-p"
   TF_github_template_repo: "argo-test"
   TF_app_name: "backend-java"
   TF_dest_namespace: "hello"
   TF_dns_prefix: "myCluster"
-  TF_tag: "main-20240827002516"
+  TF_tag: "${{ github.event.inputs.name }}"
 
 jobs:
   terraform-plan:
