@@ -53,11 +53,11 @@ jobs:
       run: terraform init
 
     - name: Azure login
-      uses: azure/cli@v2
+      uses: azure/login@v2
       with:
-          azcliversion: latest
-          inlineScript: |
-            az login -u ${{ secrets.AZURE_USER_ID }} -p ${{ secrets.AZURE_PASSWORD }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
       
     # Generates an execution plan for Terraform
     # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
