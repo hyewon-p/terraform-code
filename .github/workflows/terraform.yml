@@ -16,8 +16,6 @@ permissions:
 
 #These environment variables are used by the terraform azure provider to setup OIDD authenticate. 
 env:
-  ARM_USER: "${{ secrets.AZURE_USER_ID }}"
-  ARM_PASSWORD: "${{ secrets.AZURE_PASSWORD }}"
   TF_VAR_azure_subscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
   TF_VAR_azure_resource_group_name: "azure01"
   TF_VAR_azure_cluster_name: "edu_azure_cluster"
@@ -54,6 +52,13 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
+    - name: Azure login
+      uses: azure/cli@v2
+      with:
+          azcliversion: latest
+          inlineScript: |
+            az login -u $AzureID -p $AzPwd
+      
     # Generates an execution plan for Terraform
     # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
     - name: Terraform Plan
