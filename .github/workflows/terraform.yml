@@ -12,7 +12,7 @@ permissions:
 #These environment variables are used by the terraform azure provider to setup OIDD authenticate. 
 env:
   ARM_USER: "${{ secrets.AZURE_USER_ID }}"
-  ARM_PASSWORD: "${{ secrets.AZURE_USER_ID }}"
+  ARM_PASSWORD: "${{ secrets.AZURE_PASSWORD }}"
   TF_azure_subscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
   TF_azure_resource_group_name: "azure01"
   TF_azure_cluster_name: "edu_azure_cluster"
