@@ -57,7 +57,7 @@ jobs:
       with:
           azcliversion: latest
           inlineScript: |
-            az login -u ${{ secret.AZURE_USER_ID }} -p ${{ secret.AZURE_PASSWORD }}
+            az login -u ${{ secrets.AZURE_USER_ID }} -p ${{ secrets.AZURE_PASSWORD }}
       
     # Generates an execution plan for Terraform
     # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
