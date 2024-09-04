@@ -33,6 +33,7 @@ data "azurerm_kubernetes_cluster" "cluster" {
   resource_group_name = data.azurerm_resource_group.azure_rg.name
 }
 
+/*
 resource "github_repository" "target_repo" {
   name        = var.github_repo_name
 
@@ -44,8 +45,9 @@ resource "github_repository" "target_repo" {
     include_all_branches = true
   }
 }
+*/
 
-
+/*
 module "gitops_secret" {
   source = "./modules/gitops_secret"
 
@@ -60,7 +62,7 @@ module "gitops_secret" {
 
   depends_on = [ github_repository.target_repo ]
 }
-
+*/
 resource "kubernetes_namespace" "target" {
   metadata {
     name = var.dest_namespace
