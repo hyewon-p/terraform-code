@@ -128,6 +128,13 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
+    - name: Azure login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_USER_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION }}
+
     # Download saved plan from artifacts  
     - name: Download Terraform Plan
       uses: actions/download-artifact@v4
